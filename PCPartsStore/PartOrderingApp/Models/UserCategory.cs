@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace PartOrderingApp.Models
+namespace PCPartsStore.Models
 {
     public enum UserCategory
     {

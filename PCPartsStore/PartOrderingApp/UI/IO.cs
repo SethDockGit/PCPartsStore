@@ -4,11 +4,11 @@ using System.ComponentModel.Design;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
-using PartOrderingApp.Data;
-using PartOrderingApp.Logic;
-using PartOrderingApp.Models;
+using PCPartsStore.Data;
+using PCPartsStore.Logic;
+using PCPartsStore.Models;
 
-namespace PartOrderingApp.UI
+namespace PCPartsStore.UI
 {
     public class IO
     {

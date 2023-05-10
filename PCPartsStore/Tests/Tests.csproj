@@ -20,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\PartOrderingApp\PartOrderingApp.csproj" />
+    <ProjectReference Include="..\PartOrderingApp\PCPartsStore.csproj" />
   </ItemGroup>
 
 </Project>

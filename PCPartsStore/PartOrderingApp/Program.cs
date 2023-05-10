@@ -1,10 +1,10 @@
 ﻿using System;
 using Microsoft.Extensions.Configuration;
-using PartOrderingApp.Data;
-using PartOrderingApp.UI;
+using PCPartsStore.Data;
+using PCPartsStore.UI;
 
 
-namespace PartOrderingApp
+namespace PCPartsStore
 {
     internal class Program
     {

@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
-using PartOrderingApp.Data;
-using PartOrderingApp.Models;
+using PCPartsStore.Data;
+using PCPartsStore.Models;
 
-namespace PartOrderingApp.Logic
+namespace PCPartsStore.Logic
 {
     public class Manager
     {

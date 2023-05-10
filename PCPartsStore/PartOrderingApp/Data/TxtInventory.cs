@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-using PartOrderingApp.Models;
+using PCPartsStore.Models;
 
-namespace PartOrderingApp.Data
+namespace PCPartsStore.Data
 {
     public class TxtInventory : IInventory
     {

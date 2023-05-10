@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using PartOrderingApp.Data;
-using PartOrderingApp.Logic;
-using PartOrderingApp.Models;
+using PCPartsStore.Data;
+using PCPartsStore.Logic;
+using PCPartsStore.Models;
 using Xunit;
 
 namespace Tests

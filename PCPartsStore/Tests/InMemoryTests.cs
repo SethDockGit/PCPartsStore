@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
-using PartOrderingApp.Data;
-using PartOrderingApp.Models;
+using PCPartsStore.Data;
+using PCPartsStore.Models;
 using Xunit;
 
 namespace Tests

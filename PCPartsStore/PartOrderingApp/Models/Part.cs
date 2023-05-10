@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace PartOrderingApp.Models
+namespace PCPartsStore.Models
 {
     public class Part
     {
