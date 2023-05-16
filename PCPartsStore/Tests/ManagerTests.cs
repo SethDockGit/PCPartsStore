@@ -11,7 +11,6 @@ namespace Tests
 {
     public class ManagerTests
     {
-        //public static TestInventory TestInventory;
 
         public static List<Part> TestParts = new List<Part>
         {
@@ -31,44 +30,25 @@ namespace Tests
             }
         };
 
-        public static List<User> TestUsers = new List<User>
-        {
-            new User()
-            {
-                Username = "s",
-                Category = UserCategory.Premium,
+        public List<User> TestUsers { get; set; }
 
-            },
-            new User()
-            {
-                Username = "d",
-                Category = UserCategory.Regular,
-
-            },
-            new User()
-            {
-                Username = "Tim",
-                Category = UserCategory.Regular,
-
-            }
-        };
-
-        public static Manager Manager;
+        public Manager Manager;
 
         public ManagerTests()
         {
             TestUserData testData = new TestUserData();
+
+            TestUsers = testData.Users;
+
             TestInventory testInventory = new TestInventory();
 
             Manager = new Manager(testInventory, testData);
         }
-
-        //NOTE: I FORGOT THAT TESTS WANT (EXPECTED, ACTUAL) FORMAT FOR ASSERT EQUAL
-
         [Fact]
         public void Manager_Authenticate_CanGetUser()
         {
-            User user1 = Manager.Authenticate("s");
+
+            User user1 = Manager.Authenticate("Seth");
 
             Assert.Equal(user1.Username, TestUsers[0].Username);
         }
@@ -102,7 +82,7 @@ namespace Tests
         {
             Order order = new Order();
 
-            order.Parts = new List<Part>(); //this is tricky and messed me up before
+            order.Parts = new List<Part>(); 
 
             WorkflowResponse response = Manager.AddPartToOrder(input, order);
 
@@ -114,7 +94,7 @@ namespace Tests
         public void Manager_DeletePartFromOrder_FailInvalidInput()
         {
             Order order = new Order();
-            order.Parts = new List<Part>(); //should I set this somewhere else, like on the property itself? Or the constructor?
+            order.Parts = new List<Part>(); 
 
             Part part = new Part();
 
@@ -151,8 +131,6 @@ namespace Tests
             IInventory inventory = Manager.GetInventory();
 
             Assert.Equal(inventory, Manager.Inventory);
-
-            //this would fail if the chain the sets the Inventory property to the manager in the constructor is broken
         }
         [Fact]
         public void Manager_CancelOrder_CanResetObsoleteStatus()
@@ -184,14 +162,12 @@ namespace Tests
             partTwo.Cost = 10m;
             order.Parts.Add(partTwo);
 
-            WorkflowResponse responseOne = Manager.GetOrderTotal(TestUsers[0], order); //premium!
-            WorkflowResponse responseTwo = Manager.GetOrderTotal(TestUsers[1], order); //reg
+            WorkflowResponse responseOne = Manager.GetOrderTotal(TestUsers[0], order); 
+            WorkflowResponse responseTwo = Manager.GetOrderTotal(TestUsers[1], order); 
 
             decimal expectedTotalOne = 18m;
 
-            decimal expectedTotalTwo = 38m; //ugh, it's adding the first total to the second
-                                            //when order is passed into GetOrderTotal the 2nd time
-                                            //it's an annoying flaw even tho the test logic is sound
+            decimal expectedTotalTwo = 38m; 
 
             Assert.Equal(expectedTotalOne, responseOne.OrderTotal);
             Assert.Equal(expectedTotalTwo, responseTwo.OrderTotal);
@@ -230,9 +206,9 @@ namespace Tests
             order.Parts = new List<Part>();
             order.Parts.Add(TestParts[0]);
 
-            TestUsers[0].Orders = new List<Order>();  //how to avoid needing to instantiate all this?
+            TestUsers[0].Orders = new List<Order>();  
 
-            WorkflowResponse response = Manager.ExecuteOrder(TestUsers[0], order);
+            Manager.ExecuteOrder(TestUsers[0], order);
 
             Assert.True(TestUsers[0].Orders.Count == 1);
 
@@ -255,7 +231,7 @@ namespace Tests
             orderTwo.Parts = new List<Part>();
             orderTwo.Parts.Add(TestParts[1]);
 
-            WorkflowResponse response = Manager.ExecuteOrder(TestUsers[0], orderTwo);
+            Manager.ExecuteOrder(TestUsers[0], orderTwo);
 
             Assert.True(TestUsers[0].Orders.Count == 2);
 
@@ -271,9 +247,9 @@ namespace Tests
             Order order = new Order();
             order.Parts = new List<Part>();
 
-            order.Parts.Add(TestParts[0]); //this test part has an ID of 1
+            order.Parts.Add(TestParts[0]); 
 
-            WorkflowResponse response = Manager.ExecuteOrder(TestUsers[0], order);
+            Manager.ExecuteOrder(TestUsers[0], order);
 
             Assert.True(Manager.Inventory.InvDictionary[1] == stockBeforeOrdering - 1);
         }
@@ -298,7 +274,7 @@ namespace Tests
         [Theory]
         [InlineData("0")]
         [InlineData("Fred")]
-        [InlineData("999999")] //if this happens we throw a party for the customer
+        [InlineData("999999")] 
         public void Manager_SelectOrder_FailInvalidInput(string input)
         {
             WorkflowResponse response = Manager.SelectOrder(TestUsers[0], input);
@@ -324,7 +300,7 @@ namespace Tests
         [Fact]
         public void Manager_GetPendingStatus_CanGetTrueIfUnderThirtyDays()
         {
-            Order order = new Order(); //pending status is auto-set to true
+            Order order = new Order(); 
             TestUsers[0].Orders = new List<Order>();
             order.DateTime = DateTime.Now;
             TestUsers[0].Orders.Add(order);
@@ -390,7 +366,7 @@ namespace Tests
 
             Assert.True(newOrder.OrderID == 1);
             Assert.False(newOrder.IsObsolete);
-            Assert.True(newOrder.Parts[0].Id == 1); //the same ID as the original part
+            Assert.True(newOrder.Parts[0].Id == 1);
         }
     }
 }

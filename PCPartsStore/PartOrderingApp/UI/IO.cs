@@ -55,7 +55,7 @@ namespace PCPartsStore.UI
             Console.Clear();
 
             Console.WriteLine($"\n\n Hello {user.Username}. Welcome to your account. What would you like to do?\n\n");
-            Console.WriteLine("1. Browse the store inventory.\n\n2. See my past orders.\n\nOr Press esc to return to the main menu.");  //there will be an option to edit or delete upon viewing pending orders.
+            Console.WriteLine("1. Browse the store inventory.\n\n2. See my past orders.\n\nOr Press esc to return to the main menu.");  
 
             var cki = Console.ReadKey();
 

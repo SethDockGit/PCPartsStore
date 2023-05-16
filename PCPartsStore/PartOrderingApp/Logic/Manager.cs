@@ -146,7 +146,7 @@ namespace PCPartsStore.Logic
 
             WorkflowResponse response = new WorkflowResponse();
 
-            bool success = CheckInventory(order, response); 
+            bool success = CheckInventory(order); 
 
             if (success)
             {
@@ -200,7 +200,7 @@ namespace PCPartsStore.Logic
                 user.Orders.Remove(toDelete);
             }
         }
-        private bool CheckInventory(Order order, WorkflowResponse response)
+        private bool CheckInventory(Order order)
         {
             //checks number of parts of each ID in the order against inventory 
 
